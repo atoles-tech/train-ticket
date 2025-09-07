@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Carriage</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Carriage</h2>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Capacity</th>
+                <th>Seats</th>
+                <th>Available</th>
+                <th>TypeCarriage</th>
+                <th>Actions</th>
+            </thead>
+          
+            <tr th:each="carriage: ${carriages}">
+                <td th:text="${carriage.id}"></td>
+                <td th:text="${carriage.seats.size()}"></td>
+                <td th:text="${carriage.seats}"></td>
+                <td th:text="${carriage.isAvailable}"></td>
+                <td th:text="${carriage.typeCarriege}"></td>
+                <td>
+                    <form th:action="@{/admin/carriage/delete/{id}(id=${carriage.id})}" method="post">
+                        <button>Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            
+        </table>
+        <form th:action="@{/admin/carriage/add-new}" method="post">
+            <input type="text" id="capacity" name="capacity" placeholder="capacity" required>
+            <input type="text" id="countRow" name="countRow" placeholder="countRow" required>
+            <select name="type" id="type">
+                <option th:each="type: ${types}" th:value="${type.id}" th:text="${type.name}">
+            </select>
+            <button>Добавить</button>
+        </form>
+    </div>
+</body>
+</html>

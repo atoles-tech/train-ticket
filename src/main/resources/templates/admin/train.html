@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Train</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <p th:text="${train.id}"></p>
+        <p>Carriages:</p>
+
+        <div th:each="carriage: ${train.carriages}" style="border: 1px solid black;">
+            <form th:action="@{/admin/train/remove-carriage/{id}/{train_id}(id=${carriage.id},train_id=${train.id})}" method="post">
+                <p th:text="${carriage.id}"></p>
+                <p th:text="${carriage.seats}"></p>
+                <button>Remove Carriage</button>
+            </form>
+        </div>
+
+        <form th:action="@{/admin/train/add-carriages/{id}(id=${train.id})}" method="post">
+            <select name="trainCarriage">
+                <option th:each="carriage: ${carriages}" th:text="${carriage.id}" th:value="${carriage.id}"></option>
+            </select>
+            <button>Add carriage</button>
+        </form>
+
+        <p>Shedule:</p>
+        <div th:each="event: ${train.shedule.events}">
+            <p th:text="${event}"></p>
+            <form th:action="@{/admin/train/remove-shedule_event/{id}(id=${event.id})}" method="post">
+                <button>Remove Event</button>
+            </form>
+        </div>
+        <form th:action="@{/admin/train/create-shedule_event/{id}(id=${train.shedule.id})}" method="post">
+            <input type="text" placeholder="startCity">
+            <input type="text" placeholder="endCity">
+            <input type="time" placeholder="startTime">
+            <input type="number" placeholder="minutes">
+            <select>
+                <option th:each="day: ${daysOfWeek}" th:text="${day}"></option>
+            </select>
+            <button>Add Event</button>
+        </form>
+    </div>
+</body>
+</html>

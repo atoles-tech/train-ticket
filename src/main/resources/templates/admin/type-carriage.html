@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - TypeCarriage</title>
+</head>
+<body>
+    <a href="/admin">toAdminPage</a>
+    <div class="container mt-4">
+        <h2>TypeCarriage Management</h2>
+    </div>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </thead>
+        <tr th:each="type: ${typeCarriage}">
+            <td th:text="${type.id}"></td>
+            <td th:text="${type.name}"></td>
+            <td>
+                <form th:action="@{/admin/type-carriage/delete/{id}(id=${type.id})}" method="post">
+                    <button>delete</button>
+                </form> 
+            </td>
+        </tr>
+    </table>
+
+    <form th:action="@{/admin/type-carriage/add-new}" method="post">
+        <input type="text" id="name" name="name">
+        <button>Добавить</button>
+    </form>
+</body>
+</html>

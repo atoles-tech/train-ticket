@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Trains</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Carriages</th>
+                <th>Shedule</th>
+                <th>Edit/Show more</th>
+            </thead>
+          
+            <tr th:each="train: ${trains}">
+                <td th:text="${train.id}"></td>
+                <td th:text="${train.carriages}"></td>
+                <td th:text="${train.shedule}"></td>
+                <td>
+                    <a th:href="@{/admin/train/{id}(id=${train.id})}">Edit</a>
+                </td>
+            </tr>
+        </table>
+        <form th:action="@{/admin/train/create}" method="post">
+            <button>create</button>
+        </form>
+    </div>
+</body>
+</html>
