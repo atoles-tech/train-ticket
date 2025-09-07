@@ -33,7 +33,7 @@ public class SheduleEvent {
     public SheduleEvent(){
     }
 
-    public SheduleEvent(String startCity, String endCity, LocalTime startTime, Integer minutes,DayOfWeek dayOfWeek) {
+    public SheduleEvent(String startCity, String endCity, LocalTime startTime, Integer minutes, DayOfWeek dayOfWeek) {
         this.startCity = startCity;
         this.endCity = endCity;
         this.startTime = startTime;

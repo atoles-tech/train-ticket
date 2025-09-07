@@ -47,6 +47,14 @@ public class Train {
         carriage.setAvailable(true);
     }
 
+    public void addEvent(SheduleEvent event){
+        this.shedule.addEvent(event);
+    }
+
+    public void removeEvent(SheduleEvent event){
+        this.shedule.removeEvent(event);
+    }
+
     public Long getId() {
         return id;
     }

@@ -26,16 +26,16 @@
         <p>Shedule:</p>
         <div th:each="event: ${train.shedule.events}">
             <p th:text="${event}"></p>
-            <form th:action="@{/admin/train/remove-shedule_event/{id}(id=${event.id})}" method="post">
+            <form th:action="@{/admin/train/remove-shedule_event/{train_id}/{id}(train_id=${train.id},id=${event.id})}" method="post">
                 <button>Remove Event</button>
             </form>
         </div>
-        <form th:action="@{/admin/train/create-shedule_event/{id}(id=${train.shedule.id})}" method="post">
-            <input type="text" placeholder="startCity">
-            <input type="text" placeholder="endCity">
-            <input type="time" placeholder="startTime">
-            <input type="number" placeholder="minutes">
-            <select>
+        <form th:action="@{/admin/train/create-shedule_event/{train_id}(train_id=${train.id})}" method="post">
+            <input type="text" placeholder="startCity" name="startCity">
+            <input type="text" placeholder="endCity" name="endCity">
+            <input type="time" placeholder="startTime" name="startTime">
+            <input type="number" placeholder="minutes" name="minutes">
+            <select name="dayOfWeek">
                 <option th:each="day: ${daysOfWeek}" th:text="${day}"></option>
             </select>
             <button>Add Event</button>
