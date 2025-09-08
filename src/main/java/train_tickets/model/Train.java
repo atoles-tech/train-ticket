@@ -7,7 +7,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Train {
@@ -18,22 +17,22 @@ public class Train {
 
     @OneToMany
     private List<TrainCarriage> carriages;
-
-    @OneToOne 
-    private Shedule shedule;
     
+    @OneToMany
+    private List<SheduleEvent> events;
+
     public Train() {
     }
 
-    public Train(List<TrainCarriage> carriages, Shedule shedule) {
+    public Train(List<TrainCarriage> carriages, List<SheduleEvent> events) {
         this.carriages = carriages;
-        this.shedule = shedule;
+        this.events = events;
     }
 
-    public Train(Long id, List<TrainCarriage> carriages, Shedule shedule) {
+    public Train(Long id, List<TrainCarriage> carriages, List<SheduleEvent> events) {
         this.id = id;
         this.carriages = carriages;
-        this.shedule = shedule;
+        this.events = events;
     }
 
     public void addCarriage(TrainCarriage carriage){
@@ -48,11 +47,11 @@ public class Train {
     }
 
     public void addEvent(SheduleEvent event){
-        this.shedule.addEvent(event);
+        this.events.add(event);
     }
 
     public void removeEvent(SheduleEvent event){
-        this.shedule.removeEvent(event);
+        this.events.remove(event);
     }
 
     public Long getId() {
@@ -71,14 +70,12 @@ public class Train {
         this.carriages = carriages;
     }
 
-    public Shedule getShedule() {
-        return shedule;
+    public List<SheduleEvent> getEvents() {
+        return events;
     }
 
-    public void setShedule(Shedule shedule) {
-        this.shedule = shedule;
-    } 
-
-    
+    public void setEvents(List<SheduleEvent> events) {
+        this.events = events;
+    }
     
 }

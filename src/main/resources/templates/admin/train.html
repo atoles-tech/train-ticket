@@ -24,7 +24,7 @@
         </form>
 
         <p>Shedule:</p>
-        <div th:each="event: ${train.shedule.events}">
+        <div th:each="event: ${train.events}">
             <p th:text="${event}"></p>
             <form th:action="@{/admin/train/remove-shedule_event/{train_id}/{id}(train_id=${train.id},id=${event.id})}" method="post">
                 <button>Remove Event</button>

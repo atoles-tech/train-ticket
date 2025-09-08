@@ -16,7 +16,6 @@ import train_tickets.model.Train;
 import train_tickets.model.TrainCarriage;
 import train_tickets.services.CarriageService;
 import train_tickets.services.SheduleEventService;
-import train_tickets.services.SheduleService;
 import train_tickets.services.TrainService;
 
 @Controller
@@ -25,16 +24,13 @@ public class AdminTrainController {
     
     private TrainService service;
     private CarriageService carriageService;
-    private SheduleService sheduleService;
     private SheduleEventService sheduleEventService;
 
     public AdminTrainController(TrainService service,
                                 CarriageService carriageService,
-                                SheduleService sheduleService,
                                 SheduleEventService sheduleEventService) {
         this.service = service;
         this.carriageService = carriageService;
-        this.sheduleService = sheduleService;
         this.sheduleEventService = sheduleEventService;
     }
 
@@ -90,11 +86,8 @@ public class AdminTrainController {
         Train train = service.getTrainByID(train_id);
         SheduleEvent event = sheduleEventService.findById(id);
 
-        System.out.println(train.getShedule());
-
         train.removeEvent(event);
 
-        sheduleService.save(train.getShedule());
         sheduleEventService.delete(event);
 
         return "redirect:/admin/train/"+train_id;
@@ -107,7 +100,6 @@ public class AdminTrainController {
         train.addEvent(event);
 
         sheduleEventService.save(event);
-        sheduleService.save(train.getShedule());
         service.save(train);
 
         return "redirect:/admin/train/"+train_id;

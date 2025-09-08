@@ -16,7 +16,7 @@
             <tr th:each="train: ${trains}">
                 <td th:text="${train.id}"></td>
                 <td th:text="${train.carriages}"></td>
-                <td th:text="${train.shedule}"></td>
+                <td th:text="${train.events}"></td>
                 <td>
                     <a th:href="@{/admin/train/{id}(id=${train.id})}">Edit</a>
                 </td>
